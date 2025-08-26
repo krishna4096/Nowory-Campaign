@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nowory - Mobile Campaign</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 48px;
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-group input:focus {
+            border-color: #00d2ff;
+            box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.2);
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4);
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .processing {
+            display: none;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .processing-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top: 4px solid #00d2ff;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .processing-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .steps {
+            margin-top: 30px;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .steps h3 {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .steps ol {
+            padding-left: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        .steps ol li {
+            margin-bottom: 10px;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .scroll-hint {
+            margin-top: 15px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .settings-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .settings-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .settings-btn::before {
+            content: '⚙️';
+            font-size: 24px;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: popIn 0.5s ease-in-out;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .popup-content h2 {
+            color: #4caf50;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .popup-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .popup-close-btn {
+            background: linear-gradient(to right, #4caf50, #8bc34a);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .popup-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.4);
+        }
+
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .password-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .password-content h2 {
+            color: #00d2ff;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .password-content input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .password-content input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .password-content input:focus {
+            border-color: #00d2ff;
+            box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.2);
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .password-submit-btn {
+            background: linear-gradient(to right, #00d2ff, #3a7bd5);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+        }
+
+        .password-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4);
+        }
+
+        .settings-content {
+            display: none;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: left;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .settings-content h2 {
+            color: #00d2ff;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .mobile-list {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .mobile-list div {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .settings-close-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.3);
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .settings-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 65, 108, 0.4);
+        }
+
+        .error-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .error-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .error-content h2 {
+            color: #ff416c;
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .error-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .error-link {
+            color: #00d2ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .error-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-close-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.3);
+        }
+
+        .error-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 65, 108, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Nowory</h1>
+            <p>Mobile Campaign</p>
+            <p>Join & Earn Rewards</p>
+        </div>
+
+        <form id="mobileForm">
+            <div class="input-group">
+                <label for="userName">Enter Your Name</label>
+                <input type="text" id="userName" name="userName" placeholder="Your Name" required>
+            </div>
+            <div class="input-group">
+                <label for="mobileNumber">Enter Your Mobile Number</label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="" pattern="[0-9]{10}" required>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+        </form>
+
+        <div class="processing" id="processing">
+            <div class="processing-spinner"></div>
+            <div class="processing-text">Processing your request...</div>
+        </div>
+
+        <div class="steps">
+            <h3>Steps to Complete:</h3>
+            <ol>
+                <li>Enter your name and mobile number</li>
+                <li>Register on the next page</li>
+                <li>Complete your profile</li>
+                <li>Start referring friends</li>
+                <li>Earn exciting rewards</li>
+            </ol>
+        </div>
+
+        <div class="footer-note">
+            Done! Your details have been registered.
+        </div>
+
+        <div class="scroll-hint">
+            Scroll down to view all steps
+        </div>
+    </div>
+
+    <div class="settings-btn" id="settingsBtn"></div>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <h2>Details Registered!</h2>
+            <p>Your details have been successfully registered. Start referring friends and earn rewards now!</p>
+            <button class="popup-close-btn" id="popupCloseBtn">OK</button>
+        </div>
+    </div>
+
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-content">
+            <h2>Enter Password</h2>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button class="password-submit-btn" id="passwordSubmitBtn">Submit</button>
+        </div>
+    </div>
+
+    <div class="settings-content" id="settingsContent">
+        <h2>Submitted Details</h2>
+        <div class="mobile-list" id="mobileList">
+            <!-- Details will be displayed here -->
+        </div>
+        <button class="settings-close-btn" id="settingsCloseBtn">Close</button>
+    </div>
+
+    <div class="error-overlay" id="errorOverlay">
+        <div class="error-content">
+            <h2>Mobile Already Registered!</h2>
+            <p>This mobile number has already been registered. Please use a different number or contact support.</p>
+            <p>Need help? Visit our <a href="https://nowory.com/support" class="error-link" target="_blank">Support Page</a></p>
+            <button class="error-close-btn" id="errorCloseBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Array to store user details
+        let userDetails = [];
+
+        document.getElementById('mobileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userName = document.getElementById('userName').value;
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            
+            // Load existing user details
+            const savedDetails = localStorage.getItem('userDetails');
+            if (savedDetails) {
+                userDetails = JSON.parse(savedDetails);
+            }
+            
+            // Check if mobile number already exists
+            const mobileExists = userDetails.some(detail => detail.mobile === mobileNumber);
+            
+            if (mobileExists) {
+                // Show error popup
+                document.getElementById('errorOverlay').style.display = 'flex';
+                return;
+            }
+            
+            // Add user details to array
+            userDetails.push({
+                name: userName,
+                mobile: mobileNumber
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('userDetails', JSON.stringify(userDetails));
+            
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('processing').style.display = 'block';
+            
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('processing').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('popupOverlay').style.display = 'flex';
+            }, 2000);
+        });
+        
+        document.getElementById('popupCloseBtn').addEventListener('click', function() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            window.location.href = 'https://nowory.com/referral?code=NOWORY79627195547';
+        });
+
+        // Settings button functionality
+        document.getElementById('settingsBtn').addEventListener('click', function() {
+            // Only show password popup when settings button is clicked
+            document.getElementById('passwordOverlay').style.display = 'flex';
+        });
+
+        // Password functionality
+        document.getElementById('passwordSubmitBtn').addEventListener('click', function() {
+            const password = document.getElementById('passwordInput').value;
+            
+            if (password === '4096078') {
+                document.getElementById('passwordOverlay').style.display = 'none';
+                
+                // Load user details from localStorage
+                const savedDetails = localStorage.getItem('userDetails');
+                if (savedDetails) {
+                    userDetails = JSON.parse(savedDetails);
+                }
+                
+                // Display user details
+                const mobileList = document.getElementById('mobileList');
+                mobileList.innerHTML = '';
+                
+                if (userDetails.length === 0) {
+                    mobileList.innerHTML = '<div>No details submitted yet.</div>';
+                } else {
+                    userDetails.forEach((detail, index) => {
+                        const detailDiv = document.createElement('div');
+                        detailDiv.innerHTML = `<strong>${index + 1}.</strong> ${detail.name} - ${detail.mobile}`;
+                        mobileList.appendChild(detailDiv);
+                    });
+                }
+                
+                document.getElementById('settingsContent').style.display = 'block';
+            } else {
+                alert('Incorrect password!');
+            }
+        });
+
+        // Close settings
+        document.getElementById('settingsCloseBtn').addEventListener('click', function() {
+            document.getElementById('settingsContent').style.display = 'none';
+        });
+
+        // Close error popup
+        document.getElementById('errorCloseBtn').addEventListener('click', function() {
+            document.getElementById('errorOverlay').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
