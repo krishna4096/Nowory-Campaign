@@ -205,30 +205,49 @@
             box-shadow: 0 0 50px rgba(245, 158, 11, 0.7); 
         }
 
-        /* High Quality 3D Falling Emojis */
+        /* Premium 3D Popup Emoji Effect (No Rain) */
         .funny-emoji {
-            position: fixed; top: -10%; left: 50%;
-            font-size: 4rem; pointer-events: none; z-index: 2000;
-            animation: fallFog 4s linear forwards;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); /* Basic Shadow */
-            /* Attempting a slight 3D feel via perspective in animation */
+            position: fixed;
+            font-size: 4rem;
+            pointer-events: none;
+            z-index: 2000;
+            animation: popupFloat 3s ease-out forwards;
+            filter: drop-shadow(0 15px 25px rgba(0,0,0,0.4));
         }
         
-        @keyframes fallFog {
+        @keyframes popupFloat {
             0% { 
-                transform: translateY(0) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg); 
+                transform: scale(0) translateY(0) rotateX(0deg); 
+                opacity: 0; 
+            }
+            20% { 
+                transform: scale(1.2) translateY(-20px) rotateX(10deg); 
                 opacity: 1; 
-                filter: blur(0) drop-shadow(0 10px 10px rgba(0,0,0,0.5));
             }
             50% { 
-                opacity: 0.9; 
-                filter: blur(2px) drop-shadow(0 20px 20px rgba(0,0,0,0.3));
+                transform: scale(1) translateY(-50px) rotateX(-10deg); 
+                opacity: 1; 
             }
             100% { 
-                transform: translateY(110vh) scale(1.2) rotateX(360deg) rotateY(180deg) rotateZ(45deg); 
+                transform: scale(0.5) translateY(-120px) rotateX(20deg); 
                 opacity: 0; 
-                filter: blur(8px); 
+                filter: blur(5px);
             }
+        }
+
+        /* Footer Credit */
+        .footer-credit {
+            position: fixed;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            pointer-events: none;
+            z-index: 100;
+            font-weight: 500;
         }
 
     </style>
@@ -430,6 +449,7 @@
 
         </div>
 
+        <div class="footer-credit">Thank you for visiting! This page was made by Krishna</div>
     </main>
 
     <script>
@@ -471,7 +491,7 @@
             }
         }
 
-        // --- 1. MAGIC BUTTON LOGIC (Jassu.mp3 + Emoji Spam) ---
+        // --- 1. MAGIC BUTTON LOGIC (Jassu.mp3 + Emoji Popups) ---
         function triggerFunnyMagic() {
             audio.src = "./jassu.mp3";
             audio.loop = false;
@@ -491,20 +511,32 @@
                 celebrateBtn.classList.add('visible');
             }, 1000);
 
-            // Spam Emojis with Fog Effect (NO POOP)
-            const emojis = ['🤡', '🤣', '🤪', '😜', '👻', '🙈', '🐷', '🦄', '💃', '🕺'];
+            // Spam Random Funny Emojis - Premium Popup Effect
+            const emojis = ['😂', '🤣', '😁'];
             for(let i=0; i<60; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
                     el.classList.add('funny-emoji');
                     el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                    el.style.left = Math.random() * 100 + 'vw';
-                    el.style.animationDuration = (Math.random() * 2 + 3) + 's'; 
+                    
+                    // Random positions all over screen
+                    const x = Math.random() * 90 + 5; // Keep within view
+                    const y = Math.random() * 80 + 10;
+                    
+                    el.style.left = x + 'vw';
+                    el.style.top = y + 'vh';
+                    
+                    // Random sizes for depth
+                    const size = Math.random() * 2 + 3; // 3rem to 5rem
+                    el.style.fontSize = size + 'rem';
+
+                    // Random duration
+                    el.style.animationDuration = (Math.random() * 1 + 2) + 's'; 
                     document.body.appendChild(el);
                     
                     // Cleanup
-                    setTimeout(() => el.remove(), 5000);
-                }, i * 80); 
+                    setTimeout(() => el.remove(), 4000);
+                }, i * 150); 
             }
         }
 
