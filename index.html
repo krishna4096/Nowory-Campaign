@@ -67,7 +67,7 @@
         }
         .polaroid-wrapper:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
 
-        /* --- Button (Red to Gold Gradient) --- */
+        /* --- Premium Buttons --- */
         .btn-primary {
             background: linear-gradient(135deg, #dc2626, #b45309);
             color: white; border: 1px solid rgba(255,255,255,0.2);
@@ -152,37 +152,83 @@
             background: #050505;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
-            gap: 20px;
+            gap: 25px;
         }
         
+        /* Premium Magic Button */
         .magic-btn {
-            background: linear-gradient(135deg, #a855f7, #6366f1);
-            color: white; padding: 18px 45px; border-radius: 50px;
-            font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; cursor: pointer;
-            box-shadow: 0 0 30px rgba(168,85,247,0.4); transition: transform 0.2s;
-            display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(168,85,247,0.3), inset 0 0 20px rgba(168,85,247,0.2);
+            transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 15px;
+            border: 2px solid rgba(168,85,247,0.5);
+            text-shadow: 0 0 10px rgba(168,85,247,0.8);
+            position: relative;
+            overflow: hidden;
         }
-        .magic-btn:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(168,85,247,0.6); }
+        .magic-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .magic-btn:hover::before { left: 100%; }
+        .magic-btn:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 40px rgba(168,85,247,0.6); 
+            border-color: #d8b4fe;
+        }
 
+        /* Premium Celebrate Button (Initially Hidden) */
         .enter-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: linear-gradient(135deg, #f59e0b, #b45309);
             color: white; padding: 18px 45px; border-radius: 50px;
             font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; cursor: pointer;
-            box-shadow: 0 0 30px rgba(16,185,129,0.4); transition: transform 0.2s;
-            display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.4); 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none; /* Hidden initially */
+            align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.3);
+            opacity: 0; transform: translateY(20px);
         }
-        .enter-btn:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(16,185,129,0.6); }
+        .enter-btn.visible {
+            display: flex; opacity: 1; transform: translateY(0);
+        }
+        .enter-btn:hover { 
+            transform: scale(1.1) translateY(-2px); 
+            box-shadow: 0 0 50px rgba(245, 158, 11, 0.7); 
+        }
 
-        /* Funny Emoji Fog Effect */
+        /* High Quality 3D Falling Emojis */
         .funny-emoji {
             position: fixed; top: -10%; left: 50%;
-            font-size: 3rem; pointer-events: none; z-index: 2000;
+            font-size: 4rem; pointer-events: none; z-index: 2000;
             animation: fallFog 4s linear forwards;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); /* Basic Shadow */
+            /* Attempting a slight 3D feel via perspective in animation */
         }
+        
         @keyframes fallFog {
-            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
-            50% { opacity: 0.9; filter: blur(2px); }
-            100% { transform: translateY(110vh) scale(1.5) rotate(360deg); opacity: 0; filter: blur(10px); }
+            0% { 
+                transform: translateY(0) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg); 
+                opacity: 1; 
+                filter: blur(0) drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+            }
+            50% { 
+                opacity: 0.9; 
+                filter: blur(2px) drop-shadow(0 20px 20px rgba(0,0,0,0.3));
+            }
+            100% { 
+                transform: translateY(110vh) scale(1.2) rotateX(360deg) rotateY(180deg) rotateZ(45deg); 
+                opacity: 0; 
+                filter: blur(8px); 
+            }
         }
 
     </style>
@@ -191,14 +237,14 @@
 
     <!-- ENTER SCREEN -->
     <div id="enter-overlay">
-        <!-- 1. Magic Button -->
-        <button class="magic-btn" onclick="triggerFunnyMagic()">
-            <span>🤡</span> Tap for Magic
+        <!-- 1. Magic Button (Visible First) -->
+        <button id="magic-btn" class="magic-btn" onclick="triggerFunnyMagic()">
+            <span>✨</span> First Tap Here
         </button>
         
-        <!-- 2. Celebrate Button -->
-        <button class="enter-btn" onclick="startExperience()">
-            <span>🎉</span> Tap to Celebrate
+        <!-- 2. Celebrate Button (Hidden Initially) -->
+        <button id="celebrate-btn" class="enter-btn" onclick="startExperience()">
+            <span>🎉</span> Now Tap to Celebrate
         </button>
         
         <p class="text-white/40 mt-4 text-xs font-light tracking-[0.3em] uppercase">Sound On 🔊</p>
@@ -431,20 +477,34 @@
             audio.loop = false;
             playAudio();
 
-            // Spam Emojis with Fog Effect
-            const emojis = ['🤡', '💩', '🤣', '🤪', '😜', '👻', '🙈', '🐷'];
-            for(let i=0; i<50; i++) {
+            // Hide Magic button
+            const magicBtn = document.getElementById('magic-btn');
+            magicBtn.style.transform = 'scale(0)';
+            setTimeout(() => { magicBtn.style.display = 'none'; }, 200);
+
+            // Show Celebrate button after delay
+            setTimeout(() => {
+                const celebrateBtn = document.getElementById('celebrate-btn');
+                celebrateBtn.style.display = 'flex';
+                // Trigger reflow
+                void celebrateBtn.offsetWidth;
+                celebrateBtn.classList.add('visible');
+            }, 1000);
+
+            // Spam Emojis with Fog Effect (NO POOP)
+            const emojis = ['🤡', '🤣', '🤪', '😜', '👻', '🙈', '🐷', '🦄', '💃', '🕺'];
+            for(let i=0; i<60; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
                     el.classList.add('funny-emoji');
                     el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
                     el.style.left = Math.random() * 100 + 'vw';
-                    el.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 2-4s duration
+                    el.style.animationDuration = (Math.random() * 2 + 3) + 's'; 
                     document.body.appendChild(el);
                     
                     // Cleanup
-                    setTimeout(() => el.remove(), 4000);
-                }, i * 100); // Stagger creation
+                    setTimeout(() => el.remove(), 5000);
+                }, i * 80); 
             }
         }
 
