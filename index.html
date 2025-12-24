@@ -183,8 +183,8 @@
         <p class="text-white/40 mt-6 text-xs font-light tracking-[0.3em] uppercase">Best Experienced with Sound</p>
     </div>
 
-    <!-- Audio Element -->
-    <audio id="bg-music" loop preload="auto">
+    <!-- Audio Element (Loop removed) -->
+    <audio id="bg-music" preload="auto">
         <!-- Initial source will be set by JS -->
     </audio>
 
@@ -385,9 +385,10 @@
         const overlay = document.getElementById('enter-overlay');
         const body = document.getElementById('main-body');
 
-        // 1. Try to play jassu.mp3 immediately on load (Note: Browsers might block this)
+        // 1. Play jassu.mp3 on load (Looped for intro)
         window.onload = function() {
             audio.src = "./jassu.mp3";
+            audio.loop = true; // Intro loops until clicked
             audio.play().then(() => {
                 isPlaying = true;
                 updateUI(true);
@@ -406,7 +407,6 @@
             }
         }
 
-        // Standard play function
         async function playAudio() {
             try {
                 await audio.play();
@@ -427,12 +427,22 @@
             }
         }
 
-        // 2. Play rahul.mp3 when "Tap to Celebrate" is clicked
+        // 2. Play rahul.mp3 (Once) then Festival.mp3 (Loop)
         function startExperience() {
-            // Change music to rahul.mp3
+            // Switch to rahul.mp3
             audio.src = "./rahul.mp3";
+            audio.loop = false; // Play ONLY once
             playAudio();
             
+            // Auto-switch to festival.mp3 when rahul.mp3 ends
+            audio.onended = function() {
+                if (audio.src.includes("rahul.mp3")) {
+                    audio.src = "./festival.mp3";
+                    audio.loop = true; // Loop the final song
+                    playAudio();
+                }
+            };
+
             overlay.style.opacity = '0';
             overlay.style.visibility = 'hidden';
             setTimeout(() => {
@@ -458,11 +468,14 @@
             gsap.from("#hero-img", { x: 50, opacity: 0, duration: 1.5, ease: "elastic.out(1, 0.75)" });
         }
 
-        // 3. Play festival.mp3 when "See My Wishes" is clicked
+        // 3. Ensure festival.mp3 plays if user clicks "See My Wishes" early
         function revealMagic() {
-            // Change music to festival.mp3
-            audio.src = "./festival.mp3";
-            playAudio();
+            // Only switch if we aren't already playing festival.mp3
+            if (!audio.src.includes("festival.mp3")) {
+                audio.src = "./festival.mp3";
+                audio.loop = true;
+                playAudio();
+            }
 
             const section = document.getElementById('magic-section');
             section.classList.remove('hidden');
