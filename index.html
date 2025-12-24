@@ -3,45 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Merry Christmas 2025! 🎄</title>
+    <title>Merry Christmas & Happy New Year! 🎄🎉</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
     <style>
-        /* --- Royal Christmas Theme --- */
+        /* --- Holiday Mashup Theme --- */
         :root {
             --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            --accent-gold: #fbbf24;
-            --accent-red: #ef4444;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.15);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            --xmas-red: #ef4444;
+            --newyear-gold: #fbbf24;
         }
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: #0f0505; /* Very dark red/black base */
-            color: #fce7f3;
+            background-color: #050505;
+            color: #f3f4f6;
             overflow-x: hidden;
             min-height: 100vh;
             width: 100%;
         }
 
-        /* --- Rich Background --- */
+        /* --- Festive Background --- */
         .mesh-bg {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100dvh; z-index: -1;
-            background: radial-gradient(circle at center, #2a0a0a, #000000);
+            background: radial-gradient(circle at center, #1a0505, #000000);
         }
 
         .mesh-blob {
-            position: absolute; filter: blur(100px); opacity: 0.5;
+            position: absolute; filter: blur(90px); opacity: 0.5;
             animation: float 10s infinite ease-in-out alternate; mix-blend-mode: screen;
         }
-        /* Richer colors: Deep Red, Amber, Purple */
-        .blob-1 { top: 10%; left: 20%; width: 50vh; height: 50vh; background: #991b1b; animation-delay: 0s; } 
-        .blob-2 { bottom: 10%; right: 10%; width: 60vh; height: 60vh; background: #b45309; animation-delay: -5s; } 
-        .blob-3 { top: 40%; left: 40%; width: 40vh; height: 40vh; background: #581c87; animation-delay: -2s; } 
+        .blob-1 { top: 10%; left: 10%; width: 50vh; height: 50vh; background: #dc2626; animation-delay: 0s; }
+        .blob-2 { bottom: 10%; right: 10%; width: 60vh; height: 60vh; background: #ca8a04; animation-delay: -5s; }
+        .blob-3 { top: 40%; left: 40%; width: 40vh; height: 40vh; background: #15803d; animation-delay: -2s; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
@@ -62,21 +61,21 @@
 
         /* --- Polaroid Style --- */
         .polaroid-wrapper {
-            background: white; padding: 16px 16px 50px 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            background: #fff; padding: 16px 16px 50px 16px;
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.3);
             transform: rotate(-3deg); transition: transform 0.4s ease;
         }
         .polaroid-wrapper:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
 
-        /* --- Button --- */
+        /* --- Button (Red to Gold Gradient) --- */
         .btn-primary {
-            background: linear-gradient(135deg, #b91c1c, #7f1d1d);
-            color: white; border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease; box-shadow: 0 0 25px rgba(185, 28, 28, 0.4);
+            background: linear-gradient(135deg, #dc2626, #b45309);
+            color: white; border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease; box-shadow: 0 0 25px rgba(220, 38, 38, 0.4);
         }
         .btn-primary:hover {
-            transform: translateY(-3px); box-shadow: 0 10px 40px rgba(185, 28, 28, 0.7);
-            background: linear-gradient(135deg, #dc2626, #991b1b);
+            transform: translateY(-3px); box-shadow: 0 10px 40px rgba(251, 191, 36, 0.5);
+            background: linear-gradient(135deg, #ef4444, #d97706);
         }
 
         /* --- Flip Cards --- */
@@ -93,7 +92,7 @@
             border-radius: 24px; overflow: hidden;
         }
         .front {
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: all 0.3s;
         }
@@ -111,7 +110,7 @@
             50% { transform: translateY(-15px); }
         }
 
-        /* --- CSS SNOWMAN (Ice Man) --- */
+        /* --- CSS SNOWMAN (Holiday Edition) --- */
         .snowman-container {
             position: relative; width: 120px; height: 160px;
             display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
@@ -123,24 +122,14 @@
         .sb-bottom { width: 80px; height: 80px; z-index: 1; margin-top: -15px; }
         .sb-middle { width: 60px; height: 60px; z-index: 2; margin-top: -12px; }
         .sb-head { width: 45px; height: 45px; z-index: 3; position: relative; }
-        
         .eyes { position: absolute; top: 15px; width: 100%; display: flex; justify-content: center; gap: 8px; }
         .eye { width: 5px; height: 5px; background: #1e293b; border-radius: 50%; }
-        .nose {
-            position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 10px solid #f97316;
-        }
+        .nose { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 10px solid #f97316; }
         .buttons { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 6px; }
         .btn { width: 5px; height: 5px; background: #1e293b; border-radius: 50%; }
-        .arms { position: absolute; top: 20px; width: 110px; left: -25px; display: flex; justify-content: space-between; pointer-events: none; z-index: 1; }
-        .arm { width: 35px; height: 2px; background: #78350f; transform-origin: center; }
-        .arm.left { transform: rotate(20deg); }
-        .arm.right { transform: rotate(-20deg); }
-        .hat {
-            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-            width: 35px; height: 25px; background: #ef4444; border-radius: 4px 4px 0 0; z-index: 4;
-        }
-        .hat::after { content:''; position: absolute; bottom: 0; left: -4px; width: 43px; height: 5px; background: #ef4444; border-radius: 4px; }
+        .hat { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 35px; height: 25px; background: #dc2626; border-radius: 4px 4px 0 0; z-index: 4; }
+        .hat::after { content:''; position: absolute; bottom: 0; left: -4px; width: 43px; height: 5px; background: white; border-radius: 4px; }
+        .hat-pom { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: white; border-radius: 50%; }
         .shadow { width: 60px; height: 8px; background: rgba(0,0,0,0.2); border-radius: 50%; margin-top: 5px; filter: blur(4px); }
         
         /* Speech Bubble */
@@ -157,19 +146,44 @@
         }
         @keyframes popIn { from { opacity: 0; transform: translateX(-50%) scale(0); } to { opacity: 1; transform: translateX(-50%) scale(1); } }
 
-        /* --- Enter Overlay --- */
+        /* --- Enter Overlay & Buttons --- */
         #enter-overlay {
             position: fixed; inset: 0; z-index: 1000;
-            background: #0a0a0a;
+            background: #050505;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s ease;
+            gap: 20px;
         }
-        .enter-btn {
-            background: white; color: black; padding: 18px 45px; border-radius: 50px;
+        
+        .magic-btn {
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: white; padding: 18px 45px; border-radius: 50px;
             font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; cursor: pointer;
-            box-shadow: 0 0 50px rgba(255,255,255,0.3); transition: transform 0.2s;
+            box-shadow: 0 0 30px rgba(168,85,247,0.4); transition: transform 0.2s;
+            display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2);
         }
-        .enter-btn:hover { transform: scale(1.05); }
+        .magic-btn:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(168,85,247,0.6); }
+
+        .enter-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white; padding: 18px 45px; border-radius: 50px;
+            font-size: 1.3rem; font-weight: 700; letter-spacing: 1px; cursor: pointer;
+            box-shadow: 0 0 30px rgba(16,185,129,0.4); transition: transform 0.2s;
+            display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.2);
+        }
+        .enter-btn:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(16,185,129,0.6); }
+
+        /* Funny Emoji Fog Effect */
+        .funny-emoji {
+            position: fixed; top: -10%; left: 50%;
+            font-size: 3rem; pointer-events: none; z-index: 2000;
+            animation: fallFog 4s linear forwards;
+        }
+        @keyframes fallFog {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+            50% { opacity: 0.9; filter: blur(2px); }
+            100% { transform: translateY(110vh) scale(1.5) rotate(360deg); opacity: 0; filter: blur(10px); }
+        }
 
     </style>
 </head>
@@ -177,13 +191,20 @@
 
     <!-- ENTER SCREEN -->
     <div id="enter-overlay">
-        <button class="enter-btn flex items-center gap-3" onclick="startExperience()">
-            <span>✨</span> Tap to Celebrate
+        <!-- 1. Magic Button -->
+        <button class="magic-btn" onclick="triggerFunnyMagic()">
+            <span>🤡</span> Tap for Magic
         </button>
-        <p class="text-white/40 mt-6 text-xs font-light tracking-[0.3em] uppercase">Best Experienced with Sound</p>
+        
+        <!-- 2. Celebrate Button -->
+        <button class="enter-btn" onclick="startExperience()">
+            <span>🎉</span> Tap to Celebrate
+        </button>
+        
+        <p class="text-white/40 mt-4 text-xs font-light tracking-[0.3em] uppercase">Sound On 🔊</p>
     </div>
 
-    <!-- Audio Element (Loop removed) -->
+    <!-- Audio Element -->
     <audio id="bg-music" preload="auto">
         <!-- Initial source will be set by JS -->
     </audio>
@@ -198,7 +219,7 @@
     <!-- Nav -->
     <nav class="fixed top-0 w-full z-40 px-6 py-6 flex justify-between items-center text-white" id="navbar">
         <div class="flex items-center gap-2">
-            <span class="text-2xl">🎄</span>
+            <span class="text-2xl">🎅</span>
             <span class="font-bold tracking-widest text-sm uppercase text-yellow-500">Made By Krishna</span>
         </div>
         <button class="glass-modern px-4 py-2 rounded-full text-xs font-bold tracking-wider hover:bg-white/10 transition-colors" onclick="toggleMusic()">
@@ -216,24 +237,25 @@
             <div class="text-center md:text-left md:w-1/2 z-20 space-y-8 order-2 md:order-1" id="hero-text">
                 <div class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
                     <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                     </span>
-                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-yellow-200">Just for you</span>
+                    <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-red-200">Holiday Special</span>
                 </div>
 
                 <h1 class="text-6xl sm:text-7xl md:text-8xl font-black text-white leading-none tracking-tight drop-shadow-2xl">
-                    Merry <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-amber-500 to-yellow-400 script-font text-7xl sm:text-8xl md:text-[9rem] font-normal block mt-4 pb-4">Christmas!</span>
+                    Merry <span class="text-red-500">Christmas</span> <br>
+                    <span class="text-3xl sm:text-4xl md:text-5xl font-light text-gray-400 block my-2">&</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-400 to-red-500 script-font text-6xl sm:text-8xl md:text-[8rem] font-normal block pb-4">Happy 2026!</span>
                 </h1>
                 
                 <p class="text-lg text-gray-300 font-light max-w-md mx-auto md:mx-0 leading-relaxed">
-                    Celebrating the season of joy, laughter, and friendship. May your days be merry and bright! ✨
+                    Wrapping up the year with festive cheer and starting the next one with a bang! Best of both worlds for my favorite person. 🥂❄️
                 </p>
 
                 <div class="pt-4">
                     <button onclick="revealMagic()" class="btn-primary px-10 py-4 rounded-full font-bold text-lg shadow-xl inline-flex items-center gap-3 group">
-                        <span>See My Wishes</span>
+                        <span>Unlock Wishes</span>
                         <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                 </div>
@@ -243,15 +265,14 @@
             <div class="md:w-1/2 flex justify-center relative z-10 order-1 md:order-2 perspective-1000" id="hero-img">
                 <div class="polaroid-wrapper w-72 md:w-80" id="polaroid">
                     <div class="aspect-[4/5] bg-gray-200 overflow-hidden relative grayscale-[20%] hover:grayscale-0 transition-all duration-700">
-                        <!-- Cozy Christmas Image -->
                         <img src="https://images.unsplash.com/photo-1543258103-a62bdc069871?q=80&w=800&auto=format&fit=crop" 
                              class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700" 
-                             alt="Christmas Vibes">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                             alt="Holiday Vibes">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="mt-4 flex justify-between items-end px-2">
-                        <p class="script-font text-3xl text-gray-800">Magical Moments</p>
-                        <span class="text-[10px] font-bold text-gray-400 font-sans tracking-widest">DEC 25</span>
+                        <p class="script-font text-3xl text-gray-800">Festive Season</p>
+                        <span class="text-[10px] font-bold text-gray-400 font-sans tracking-widest">DEC-JAN</span>
                     </div>
                 </div>
                 <!-- Floating Decor -->
@@ -265,7 +286,7 @@
         <div id="magic-section" class="hidden min-h-screen py-24 opacity-0 transition-opacity duration-1000">
             
             <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-4">My Wishes <span class="text-yellow-500 script-font text-6xl md:text-7xl">For You</span></h2>
+                <h2 class="text-4xl md:text-6xl font-bold text-white mb-4">Wishes For <span class="text-yellow-500 script-font text-6xl md:text-7xl">You</span></h2>
                 <div class="h-1 w-24 bg-gradient-to-r from-red-600 to-yellow-500 mx-auto rounded-full opacity-70 mb-6"></div>
                 <p class="text-gray-400 text-sm tracking-widest uppercase animate-pulse">Tap cards to reveal</p>
             </div>
@@ -277,15 +298,15 @@
                 <div class="flip-container hover:scale-[1.02] transition-transform" onclick="this.classList.toggle('flipped')">
                     <div class="flipper">
                         <div class="front">
-                            <span class="text-6xl mb-4">🕯️</span>
-                            <h3 class="text-2xl font-bold text-white">Warmth</h3>
+                            <span class="text-6xl mb-4">🎄</span>
+                            <h3 class="text-2xl font-bold text-white">Holiday Joy</h3>
                             <span class="mt-4 text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-white/70">OPEN ME</span>
                         </div>
                         <div class="back">
-                            <span class="text-5xl mb-4">❤️</span>
-                            <h3 class="text-xl font-bold mb-3 text-gray-900">Love & Laughter</h3>
+                            <span class="text-5xl mb-4">🎅</span>
+                            <h3 class="text-xl font-bold mb-3 text-red-600">Merry Christmas</h3>
                             <p class="text-center text-gray-600 text-sm leading-relaxed">
-                                "May your home be filled with laughter, your heart with love, and your life with endless joy this holiday season."
+                                "May your Christmas be filled with warmth, love, and way too much delicious food. Enjoy the festive magic!"
                             </p>
                         </div>
                     </div>
@@ -296,14 +317,14 @@
                     <div class="flipper">
                         <div class="front">
                             <span class="text-6xl mb-4">🚀</span>
-                            <h3 class="text-2xl font-bold text-white">Adventure</h3>
+                            <h3 class="text-2xl font-bold text-white">2026 Goals</h3>
                             <span class="mt-4 text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-white/70">OPEN ME</span>
                         </div>
                         <div class="back">
-                            <span class="text-5xl mb-4">🌟</span>
-                            <h3 class="text-xl font-bold mb-3 text-gray-900">New Beginnings</h3>
+                            <span class="text-5xl mb-4">🥂</span>
+                            <h3 class="text-xl font-bold mb-3 text-yellow-600">Happy New Year</h3>
                             <p class="text-center text-gray-600 text-sm leading-relaxed">
-                                "Here's to a fresh start in 2025! May the coming year bring you success, crazy memories, and zero stress."
+                                "Here's to a fresh start in 2026! May you crush every goal and find happiness in every day."
                             </p>
                         </div>
                     </div>
@@ -313,15 +334,15 @@
                 <div class="flip-container hover:scale-[1.02] transition-transform" onclick="this.classList.toggle('flipped')">
                     <div class="flipper">
                         <div class="front">
-                            <span class="text-6xl mb-4">🤝</span>
-                            <h3 class="text-2xl font-bold text-white">Friendship</h3>
+                            <span class="text-6xl mb-4">❤️</span>
+                            <h3 class="text-2xl font-bold text-white">Forever</h3>
                             <span class="mt-4 text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-white/70">OPEN ME</span>
                         </div>
                         <div class="back">
-                            <span class="text-5xl mb-4">🥂</span>
-                            <h3 class="text-xl font-bold mb-3 text-gray-900">Always There</h3>
+                            <span class="text-5xl mb-4">🍻</span>
+                            <h3 class="text-xl font-bold mb-3 text-purple-600">Cheers to Us</h3>
                             <p class="text-center text-gray-600 text-sm leading-relaxed">
-                                "Distances might change, but our bond? Never. Cheers to another year of tolerating each other!"
+                                "From Christmas parties to New Year resolutions (that we break), so glad to have you by my side."
                             </p>
                         </div>
                     </div>
@@ -331,43 +352,32 @@
 
             <!-- Final Surprise -->
             <div class="mt-32 text-center relative">
-                <h3 class="text-3xl font-bold text-white mb-12 script-font text-5xl">One last thing...</h3>
+                <h3 class="text-3xl font-bold text-white mb-12 script-font text-5xl">One last surprise...</h3>
                 
                 <div class="relative inline-block cursor-pointer group" onclick="openGift()">
                     <!-- Gift Box -->
                     <div id="gift-box" class="floating-gift w-48 h-48 glass-modern rounded-3xl flex items-center justify-center border border-white/20 transition-all duration-500 group-hover:scale-110 group-hover:border-yellow-400/50 group-hover:bg-red-500/10 shadow-[0_0_50px_rgba(239,68,68,0.3)]">
-                        <span class="text-8xl drop-shadow-xl filter grayscale group-hover:grayscale-0 transition-all duration-500">🎅</span>
+                        <span class="text-8xl drop-shadow-xl filter grayscale group-hover:grayscale-0 transition-all duration-500">🎁</span>
                     </div>
 
                     <!-- CSS Snowman Reveal -->
                     <div id="gift-content" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 bg-white p-8 rounded-3xl shadow-2xl scale-0 z-50 flex flex-col items-center">
-                        
-                        <!-- The CSS Snowman -->
                         <div class="snowman-container">
-                            <div class="speech-bubble">Season's Greetings!</div>
+                            <div class="speech-bubble">Merry Xmas & New Year!</div>
                             <div class="sb-head snow-body">
-                                <div class="hat">
-                                    <div class="hat-pom"></div>
-                                </div>
-                                <div class="eyes">
-                                    <div class="eye"></div><div class="eye"></div>
-                                </div>
+                                <div class="hat"><div class="hat-pom"></div></div>
+                                <div class="eyes"><div class="eye"></div><div class="eye"></div></div>
                                 <div class="nose"></div>
                             </div>
                             <div class="sb-middle snow-body">
-                                <div class="buttons">
-                                    <div class="btn"></div><div class="btn"></div>
-                                </div>
-                                <div class="arms">
-                                    <div class="arm left"></div><div class="arm right"></div>
-                                </div>
+                                <div class="buttons"><div class="btn"></div><div class="btn"></div></div>
+                                <div class="arms"><div class="arm left"></div><div class="arm right"></div></div>
                             </div>
                             <div class="sb-bottom snow-body"></div>
                             <div class="shadow"></div>
                         </div>
-
-                        <h4 class="text-2xl font-bold text-gray-900 mt-2 font-display">Merry Christmas!</h4>
-                        <p class="text-gray-500 font-medium text-center text-sm mt-2">Best Wishes for 2025!</p>
+                        <h4 class="text-2xl font-bold text-gray-900 mt-2 font-display">Happy Holidays!</h4>
+                        <p class="text-gray-500 font-medium text-center text-sm mt-2">Have a blast!</p>
                     </div>
                 </div>
             </div>
@@ -384,18 +394,6 @@
         const statusText = document.getElementById('music-status');
         const overlay = document.getElementById('enter-overlay');
         const body = document.getElementById('main-body');
-
-        // 1. Play jassu.mp3 on load (Looped for intro)
-        window.onload = function() {
-            audio.src = "./jassu.mp3";
-            audio.loop = true; // Intro loops until clicked
-            audio.play().then(() => {
-                isPlaying = true;
-                updateUI(true);
-            }).catch(e => {
-                console.log("Autoplay blocked. Waiting for user interaction.");
-            });
-        };
 
         function updateUI(playing) {
             if (playing) {
@@ -427,18 +425,40 @@
             }
         }
 
-        // 2. Play rahul.mp3 (Once) then Festival.mp3 (Loop)
+        // --- 1. MAGIC BUTTON LOGIC (Jassu.mp3 + Emoji Spam) ---
+        function triggerFunnyMagic() {
+            audio.src = "./jassu.mp3";
+            audio.loop = false;
+            playAudio();
+
+            // Spam Emojis with Fog Effect
+            const emojis = ['🤡', '💩', '🤣', '🤪', '😜', '👻', '🙈', '🐷'];
+            for(let i=0; i<50; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.classList.add('funny-emoji');
+                    el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.animationDuration = (Math.random() * 2 + 2) + 's'; // 2-4s duration
+                    document.body.appendChild(el);
+                    
+                    // Cleanup
+                    setTimeout(() => el.remove(), 4000);
+                }, i * 100); // Stagger creation
+            }
+        }
+
+        // --- 2. CELEBRATE BUTTON LOGIC (Rahul.mp3 -> Festival.mp3) ---
         function startExperience() {
-            // Switch to rahul.mp3
             audio.src = "./rahul.mp3";
-            audio.loop = false; // Play ONLY once
+            audio.loop = false;
             playAudio();
             
-            // Auto-switch to festival.mp3 when rahul.mp3 ends
+            // Auto-switch to festival.mp3
             audio.onended = function() {
                 if (audio.src.includes("rahul.mp3")) {
                     audio.src = "./festival.mp3";
-                    audio.loop = true; // Loop the final song
+                    audio.loop = true;
                     playAudio();
                 }
             };
@@ -452,7 +472,7 @@
             }, 500);
         }
 
-        // Polaroid Effect
+        // Animations & Effects
         const polaroid = document.getElementById('polaroid');
         document.addEventListener('mousemove', (e) => {
             if(window.innerWidth < 768) return;
@@ -461,17 +481,14 @@
             polaroid.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) rotate(-3deg)`;
         });
 
-        // Animations
         function runIntroAnimation() {
             gsap.from("#navbar", { y: -100, opacity: 0, duration: 1 });
             gsap.from("#hero-text > *", { y: 50, opacity: 0, duration: 1, stagger: 0.1 });
             gsap.from("#hero-img", { x: 50, opacity: 0, duration: 1.5, ease: "elastic.out(1, 0.75)" });
         }
 
-        // 3. Ensure festival.mp3 plays if user clicks "See My Wishes" early
         function revealMagic() {
-            // Only switch if we aren't already playing festival.mp3
-            if (!audio.src.includes("festival.mp3")) {
+            if (!audio.src.includes("festival.mp3") && !audio.src.includes("rahul.mp3") && !audio.src.includes("jassu.mp3")) {
                 audio.src = "./festival.mp3";
                 audio.loop = true;
                 playAudio();
@@ -479,7 +496,6 @@
 
             const section = document.getElementById('magic-section');
             section.classList.remove('hidden');
-            
             setTimeout(() => {
                 section.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 section.classList.remove('opacity-0');
@@ -491,19 +507,17 @@
         function openGift() {
             const box = document.getElementById('gift-box');
             const content = document.getElementById('gift-content');
-            
             gsap.to(box, { scale: 0, opacity: 0, duration: 0.4 });
             content.classList.remove('hidden');
             gsap.to(content, { scale: 1, duration: 0.6, delay: 0.2, ease: "elastic.out(1, 0.5)", onComplete: fireConfetti });
         }
 
-        // Confetti
         const canvas = document.getElementById('canvas-overlay');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         let particles = [];
-        const colors = ['#ef4444', '#f59e0b', '#ffffff', '#fbbf24'];
+        const colors = ['#dc2626', '#fbbf24', '#ffffff', '#15803d'];
 
         function fireConfetti() {
             for(let i=0; i<150; i++) {
